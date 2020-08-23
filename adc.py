@@ -16,7 +16,7 @@ def readADCValue():
     spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
     
     # create the cs (chip select)
-    cs = digitalio.DigitalInOut(board.D5)
+    cs = digitalio.DigitalInOut(board.D)
     
     # create the mcp object
     mcp = MCP.MCP3008(spi, cs)
@@ -40,3 +40,4 @@ def readRFID():
 if __name__=="__main__":
     readADCValue()
     readRFID()
+

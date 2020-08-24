@@ -11,15 +11,12 @@ from pandas import DataFrame, read_csv
 from gpiozero import MCP3008
 
 
+def isDriverInDB(driver_id):
+    return True
+def isVehicleInDB(vehicle_id):
+    return True
 def addDriverToDB():
-
     return 0
-def readCard():
-    ids = 0 
-    info = 0
-
-    return (ids, info)
-
 def updateDriverList(report):
     """
     Args:
@@ -44,7 +41,9 @@ def updateVehicleList(report):
           )
     df.to_csv("logs/Vehicle_data.csv", index = False)
 
-def displayOnLCD(line1, line2): 
+def displayOnLCD(line1, line2):
+    GPIO.cleanup()
+     
     # Modify this if you have a different sized character LCD
     lcd_columns = 16
     lcd_rows = 2
@@ -64,6 +63,7 @@ def displayOnLCD(line1, line2):
     # combine both lines into one update to the display
     lcd.message = line1 + line2
     sleep(2)
+    GPIO.cleanup()
 
 def readADCValue(): 
     # Assign Pins for software spi
@@ -82,5 +82,5 @@ def readRFID():
             print(id)
             print(text)
     finally:
-            GPIO.cleanup()
-    return (id,text)
+            #GPIO.cleanup()
+            return (id,text)
